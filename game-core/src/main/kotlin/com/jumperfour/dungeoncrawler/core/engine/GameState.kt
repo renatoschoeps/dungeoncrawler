@@ -44,5 +44,27 @@ data class GameState(
                 phase = TurnPhase.HERO_TURN
             )
         }
+
+        // TODO (próxima fase): fog of war real. Por ora revelamos a sala inteira.
+        fun sampleQuest(heroes: List<Hero>): GameState {
+            val grid = Grid.sampleRoom()
+            val positioned = heroes.mapIndexed { index, hero ->
+                hero.copy(position = Position(2 + index, 2))
+            }
+            val turnOrder = positioned.map { EntityId.Hero(it.id) }
+            return GameState(
+                questId = "quest-sample-room",
+                round = 1,
+                grid = grid,
+                heroes = positioned.associateBy { it.id },
+                monsters = emptyMap(),
+                doors = emptyMap(),
+                traps = emptyMap(),
+                discoveredCells = grid.cells.keys,
+                turnOrder = turnOrder,
+                currentTurnIndex = 0,
+                phase = TurnPhase.HERO_TURN
+            )
+        }
     }
 }

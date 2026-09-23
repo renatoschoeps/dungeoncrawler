@@ -33,5 +33,29 @@ data class Grid(
             }
             return Grid(width, height, cells)
         }
+
+        // TODO (próxima fase): substituir por sala carregada de um arquivo
+        // JSON de missão. Por ora, uma sala fixa só para vermos o tabuleiro.
+        fun sampleRoom(width: Int = 10, height: Int = 7): Grid {
+            val cells = buildMap {
+                for (x in 0 until width) {
+                    for (y in 0 until height) {
+                        val pos = Position(x, y)
+                        val isBorder = x == 0 || y == 0 || x == width - 1 || y == height - 1
+                        val type = if (isBorder) CellType.WALL else CellType.ROOM
+                        put(
+                            pos,
+                            Cell(
+                                position = pos,
+                                type = type,
+                                roomId = if (!isBorder) "room-1" else null,
+                                blocked = isBorder
+                            )
+                        )
+                    }
+                }
+            }
+            return Grid(width, height, cells)
+        }
     }
 }

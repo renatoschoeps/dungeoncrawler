@@ -38,7 +38,7 @@ class GameViewModel {
             placeholderHero("hero-1", "Herói 1", HeroClass.WARRIOR),
             placeholderHero("hero-2", "Herói 2", HeroClass.MAGE)
         )
-        return GameState.newGame(questId = "quest-placeholder", heroes = heroes)
+        return GameState.sampleQuest(heroes)
     }
 
     private fun placeholderHero(id: String, name: String, heroClass: HeroClass) = Hero(

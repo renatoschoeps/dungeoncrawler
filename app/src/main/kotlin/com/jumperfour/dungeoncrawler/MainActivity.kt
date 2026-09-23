@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.jumperfour.dungeoncrawler.core.entity.EntityId
+import com.jumperfour.dungeoncrawler.ui.BoardView
 import com.jumperfour.dungeoncrawler.viewmodel.GameViewModel
 
 class MainActivity : ComponentActivity() {
@@ -36,7 +37,11 @@ fun EngineDebugScreen(viewModel: GameViewModel = remember { GameViewModel() }) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text("Dungeon Crawler — M1 (motor sem tabuleiro)", style = MaterialTheme.typography.titleLarge)
+        Text("Dungeon Crawler — M2 (tabuleiro)", style = MaterialTheme.typography.titleLarge)
+        Spacer(Modifier.height(16.dp))
+
+        BoardView(state = state, modifier = Modifier.padding(horizontal = 8.dp))
+
         Spacer(Modifier.height(16.dp))
         Text("Rodada: ${state.round}")
         Text("Fase: ${state.phase}")

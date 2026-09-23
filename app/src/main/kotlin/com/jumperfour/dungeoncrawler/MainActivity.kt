@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -33,16 +35,21 @@ fun EngineDebugScreen(viewModel: GameViewModel = remember { GameViewModel() }) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(24.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+            .verticalScroll(rememberScrollState())
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("Dungeon Crawler — M2 (tabuleiro)", style = MaterialTheme.typography.titleLarge)
-        Spacer(Modifier.height(16.dp))
+        Text("Dungeon Crawler — M2 (tabuleiro)", style = MaterialTheme.typography.titleMedium)
+        Spacer(Modifier.height(12.dp))
 
-        BoardView(state = state, modifier = Modifier.padding(horizontal = 8.dp))
+        BoardView(
+            state = state,
+            modifier = Modifier
+                .fillMaxWidth(0.6f)
+                .padding(horizontal = 8.dp)
+        )
 
-        Spacer(Modifier.height(16.dp))
+        Spacer(Modifier.height(12.dp))
         Text("Rodada: ${state.round}")
         Text("Fase: ${state.phase}")
 
@@ -52,14 +59,16 @@ fun EngineDebugScreen(viewModel: GameViewModel = remember { GameViewModel() }) {
         }
         Text("Turno atual: $heroName")
 
-        Spacer(Modifier.height(24.dp))
+        Spacer(Modifier.height(16.dp))
         Button(onClick = { viewModel.endCurrentTurn() }) {
             Text("Encerrar turno")
         }
 
         viewModel.lastError?.let {
-            Spacer(Modifier.height(16.dp))
+            Spacer(Modifier.height(12.dp))
             Text("Erro: $it", color = MaterialTheme.colorScheme.error)
         }
+
+        Spacer(Modifier.height(24.dp))
     }
 }

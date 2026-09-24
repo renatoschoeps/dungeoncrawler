@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.jumperfour.dungeoncrawler"
+    namespace = "com.schoeps_rsa.dungeoncrawler"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.jumperfour.dungeoncrawler"
+        applicationId = "com.schoeps_rsa.dungeoncrawler"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
